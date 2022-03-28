@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/71cdb199-5269-4713-8850-448527a9f9d6/resourceGroups/HomeTutorsClub_group/providers/Microsoft.Web/sites/Home-Tutors-Club",
+    "appService.deploySubpath": "."
+}
