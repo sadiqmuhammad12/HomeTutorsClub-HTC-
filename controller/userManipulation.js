@@ -144,6 +144,36 @@ router.get("/find_tutor", async (req, res) => {
   }
 });
 
+// For delete a student
+router.delete("/delete_student", async (req, res) => {
+  try {
+    const delete_user = await User.find({profile_status: "Student" });
+    if (delete_user) {
+      await delete_user.deleteOne();
+      res.status(200).json(" Student has been deleted");
+    } else {
+      res.status(500).json("You can delete only user Student");
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// For delete a tutor
+router.delete("/delete_tutor", async (req, res) => {
+  try {
+    const delete_user = await User.find({profile_status: "Tutor" });
+    if (delete_user) {
+      await delete_user.deleteOne();
+      res.status(200).json(" Tutor has been deleted");
+    } else {
+      res.status(500).json("You can delete only user Tutor");
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //Read all user
 router.get("/find", async (req, res) => {
   try {

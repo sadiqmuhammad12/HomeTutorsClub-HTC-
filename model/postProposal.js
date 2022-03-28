@@ -30,4 +30,4 @@ const UserSchema = new mongoose.Schema(
 //   field: '_id'
 // });
 
-module.exports = mongoose.model("proposal", UserSchema);
+module.exports = mongoose.model("proposal_for_testing", UserSchema);

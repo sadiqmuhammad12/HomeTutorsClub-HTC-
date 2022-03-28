@@ -73,4 +73,4 @@ const UserSchema = new mongoose.Schema(
 //   field: '_id'
 // });
 
-module.exports = mongoose.model("Home-Tutors-Club", UserSchema);
+module.exports = mongoose.model("user_for_testing", UserSchema);
