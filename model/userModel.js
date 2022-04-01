@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema(
     img: {
       type: String,
     },
+    favourits : {type : Array, default : []},
     work_experience: [
       {
         w_title: { type: String, default: "" },
@@ -73,4 +74,4 @@ const UserSchema = new mongoose.Schema(
 //   field: '_id'
 // });
 
-module.exports = mongoose.model("user_for_testing", UserSchema);
+module.exports = mongoose.model("Home-Tutors-Club", UserSchema);

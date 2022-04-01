@@ -144,36 +144,6 @@ router.get("/find_tutor", async (req, res) => {
   }
 });
 
-// For delete a student
-router.delete("/delete_student", async (req, res) => {
-  try {
-    const delete_user = await User.find({profile_status: "Student" });
-    if (delete_user) {
-      await delete_user.deleteOne();
-      res.status(200).json(" Student has been deleted");
-    } else {
-      res.status(500).json("You can delete only user Student");
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// For delete a tutor
-router.delete("/delete_tutor", async (req, res) => {
-  try {
-    const delete_user = await User.find({profile_status: "Tutor" });
-    if (delete_user) {
-      await delete_user.deleteOne();
-      res.status(200).json(" Tutor has been deleted");
-    } else {
-      res.status(500).json("You can delete only user Tutor");
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 //Read all user
 router.get("/find", async (req, res) => {
   try {
@@ -364,4 +334,28 @@ router.get("/read_profile_status/:_id", async (req, res) => {
 //   })
 // })
 
+router.put("/:id/follow", async (req,res) => {
+  if(req.body._id !== req.params.id)
+  {
+     try{
+        const user = await User.findById(req.params.id); //jan
+        const currentUser = await User.findById({_id :req.body._id});//jon
+        if(!user.favourits.includes(req.body._id)){
+           await user.updateOne({$push : { favourits : currentUser}});
+          //  await currentUser.updateOne({ $push : {followins : req.params.id}});
+           res.status(200).json("User has been follwed");
+        }
+        else{
+           res.status(203).json("You already follwed this user");
+        }
+     }
+     catch(err)
+     {
+        res.status(500).json(err);
+     }
+  }
+  else{
+     res.status(203).json("You can follow yourself");
+  }
+})
 module.exports = router;
